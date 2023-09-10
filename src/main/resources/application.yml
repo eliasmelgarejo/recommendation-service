@@ -1,0 +1,46 @@
+debug: true
+server:
+  port: 9002
+logging:
+  pattern:
+    dateformat: "yyyy-MM-dd HH:mm:ss"
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    level: "%5p"
+  level:
+    root: WARN
+    org.springframework.web: WARN
+    org.hibernate: WARN
+
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  application:
+    name: recommendation-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/recommendation_db
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+    database: postgresql
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      properties:
+        spring.json.trusted.packages: "com.ventas.ecommerce.producer.model.EcommerceSales"
+kafka:
+  topic: ecommerce_product_sales
+  group-id: groupId
+  num-partitions: 1
+  replication-factor: 1
