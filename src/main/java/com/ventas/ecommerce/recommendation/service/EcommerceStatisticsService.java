@@ -49,12 +49,12 @@ public class EcommerceStatisticsService implements IEcommerceStatisticsService {
     }
 
     @Override
-    public List<EcommerceStatistics> recomendadosPorCategoria(String productCategory) {
-        return repository.recomendadosPorCategoria(productCategory);
+    public List<EcommerceStatisticsDto> recomendadosPorCategoria(String productCategory) {
+        return repository.recomendadosPorCategoria(productCategory).stream().map(mapper::toDto).toList();
     }
 
     @Override
-    public List<EcommerceStatistics> recomendadosPorCategoriaMesAnio(String productCategory, int year, int month) {
-        return repository.recomendadosPorCategoriaMesAnio(productCategory, year, month);
+    public List<EcommerceStatisticsDto> recomendadosPorCategoriaMesAnio(String productCategory, int year, int month) {
+        return repository.recomendadosPorCategoriaMesAnio(productCategory, year, month).stream().map(mapper::toDto).toList();
     }
 }

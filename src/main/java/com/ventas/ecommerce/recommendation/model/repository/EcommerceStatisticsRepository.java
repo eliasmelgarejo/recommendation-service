@@ -14,7 +14,17 @@ public interface EcommerceStatisticsRepository extends JpaRepository<EcommerceSt
     Optional<EcommerceStatistics> findFirstByProductCodeAndYearAndMonthOrderByIdDesc(String productCode, int year, int month);
 
     //select  * from ecommerce_statistics es order by es.quantity desc limit 3
-    @Query("select e from EcommerceStatistics e where e.productCategory = ?1 order by e.quantity DESC limit 3")
+    @Query(value = "select  e.id, e.created_dated, e.\"month\", e.product_code,\n" +
+            "e.product_category, sum(e.quantity) as \"quantity\",\n" +
+            "e.updated_dated, e.\"version\", e.\"year\" \n" +
+            "from ecommerce_statistics e \n" +
+            "where e.product_category = ?1\n" +
+            "group by e.id, e.created_dated, e.\"month\", \n" +
+            "e.product_code, e.product_category, \"quantity\", \n" +
+            "e.updated_dated, e.\"version\", e.\"year\" \n" +
+            "order by e.quantity desc \n" +
+            "limit 3 ",
+            nativeQuery = true)
     List<EcommerceStatistics> recomendadosPorCategoria(String productCategory);
 
     @Query("""

@@ -1,4 +1,4 @@
-debug: true
+debug: false
 server:
   port: 9002
 logging:
@@ -29,7 +29,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-    show-sql: true
+    show-sql: false
     database: postgresql
   jackson:
     serialization:

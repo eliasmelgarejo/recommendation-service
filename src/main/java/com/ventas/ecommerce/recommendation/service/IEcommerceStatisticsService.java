@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface IEcommerceStatisticsService {
     void addEcommerceStatistics(EcommerceStatisticsDto dto) throws Exception;
-    List<EcommerceStatistics> recomendadosPorCategoria(String productCategory);
-    List<EcommerceStatistics> recomendadosPorCategoriaMesAnio(String productCategory, int year, int month);
+    List<EcommerceStatisticsDto> recomendadosPorCategoria(String productCategory);
+    List<EcommerceStatisticsDto> recomendadosPorCategoriaMesAnio(String productCategory, int year, int month);
 }

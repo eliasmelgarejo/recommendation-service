@@ -20,6 +20,19 @@
 		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>com.nimbusds</groupId>
+			<artifactId>nimbus-jose-jwt</artifactId>
+			<version>9.31</version>
+		</dependency>
+
+		<!-- Swagger UI -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.1.0</version>
+		</dependency>
 		<!-- para validaciones en mapstruct -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
