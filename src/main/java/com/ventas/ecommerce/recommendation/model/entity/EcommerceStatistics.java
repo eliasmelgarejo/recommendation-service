@@ -9,6 +9,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
+/**
+ * The type Ecommerce statistics.
+ */
 @Entity
 @Table(name = "ecommerce_statistics", uniqueConstraints = {
         @UniqueConstraint(name = "uk_year_month_product_code", columnNames = {"year", "month", "product_code"})

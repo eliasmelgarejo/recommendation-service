@@ -6,8 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
+
+/**
+ * The type Ecommerce sales.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

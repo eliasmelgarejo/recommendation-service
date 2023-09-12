@@ -10,23 +10,38 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Ecommerce statistics service.
+ */
 @Log4j2
 @Service
 public class EcommerceStatisticsService implements IEcommerceStatisticsService {
     private final EcommerceStatisticsRepository repository;
     private final EcommerceStatisticsMapper mapper;
 
+    /**
+     * Instantiates a new Ecommerce statistics service.
+     *
+     * @param repository the repository
+     * @param mapper     the mapper
+     */
     public EcommerceStatisticsService(EcommerceStatisticsRepository repository,
                                       EcommerceStatisticsMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
 
+    /**
+     * Add ecommerce statistics.
+     *
+     * @param dto the dto
+     * @throws Exception the exception
+     */
     @Override
     public void addEcommerceStatistics(EcommerceStatisticsDto dto) throws Exception {
         log.debug("addEcommerceStatistics");
         //verificar si ya existe el producto en la base de datos
-        if (repository.ExistsProduct(dto.getProductCode(), dto.getYear(), dto.getMonth())) {
+        if (repository.existsProduct(dto.getProductCode(), dto.getYear(), dto.getMonth())) {
             //si existe, recupero el registro e incremento la cantidad antes de actualizar la cantidad
             Optional<EcommerceStatistics> optionalEntity = repository.findFirstByProductCodeAndYearAndMonthOrderByIdDesc(dto.getProductCode(), dto.getYear(), dto.getMonth());
             if (optionalEntity.isPresent()) {
@@ -48,11 +63,25 @@ public class EcommerceStatisticsService implements IEcommerceStatisticsService {
         }
     }
 
+    /**
+     * Recomendados por categoria list.
+     *
+     * @param productCategory the product category
+     * @return the list
+     */
     @Override
     public List<EcommerceStatisticsDto> recomendadosPorCategoria(String productCategory) {
         return repository.recomendadosPorCategoria(productCategory).stream().map(mapper::toDto).toList();
     }
 
+    /**
+     * Recomendados por categoria mes anio list.
+     *
+     * @param productCategory the product category
+     * @param year            the year
+     * @param month           the month
+     * @return the list
+     */
     @Override
     public List<EcommerceStatisticsDto> recomendadosPorCategoriaMesAnio(String productCategory, int year, int month) {
         return repository.recomendadosPorCategoriaMesAnio(productCategory, year, month).stream().map(mapper::toDto).toList();

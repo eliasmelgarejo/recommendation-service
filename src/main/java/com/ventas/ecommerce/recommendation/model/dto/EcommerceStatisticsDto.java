@@ -10,6 +10,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
+/**
+ * The type Ecommerce statistics dto.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

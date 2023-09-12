@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * The type Recommendation rest controller.
+ */
 @Log4j2
 @RestController
 @RequestMapping("/api/v1/recommendation")
@@ -26,11 +29,23 @@ public class RecommendationRestController {
     private final IEcommerceStatisticsService service;
     private final Gson gson;
 
+    /**
+     * Instantiates a new Recommendation rest controller.
+     *
+     * @param service the service
+     * @param gson    the gson
+     */
     public RecommendationRestController(IEcommerceStatisticsService service, Gson gson) {
         this.service = service;
         this.gson = gson;
     }
 
+    /**
+     * By product category response entity.
+     *
+     * @param productCategory the product category
+     * @return the response entity
+     */
     @Operation(
             summary = "ByProductCategory",
             description = "List of recommended products by category",
@@ -58,6 +73,14 @@ public class RecommendationRestController {
         }
     }
 
+    /**
+     * By product category response entity.
+     *
+     * @param productCategory the product category
+     * @param year            the year
+     * @param month           the month
+     * @return the response entity
+     */
     @Operation(
             summary = "ByProductCategoryYearMonth",
             description = "List of recommended products by category, year and month",
